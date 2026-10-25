@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agriwater-rl"
+version = "0.1.0"
+description = "AgriWater-RL — môi trường Gymnasium mô phỏng tưới tiêu tối ưu nguồn nước (Nhóm 10)"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "gymnasium>=1.1",
+]
+
+[project.optional-dependencies]
+# DQN cần torch; máy đã có sẵn torch toàn cục nên có thể bỏ qua extra này.
+dqn = ["torch>=2.0"]
+# Metrics/learning curve cho UC-05.
+viz = ["pandas>=2.0", "matplotlib>=3.8"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["agriwater*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "slow: test đo hiệu năng (chạy riêng, bỏ qua khi cần nhanh)",
+]

@@ -1,0 +1,13 @@
+# Thư viện tối thiểu để dựng môi trường (E-01 → E-16)
+numpy>=1.26
+gymnasium>=1.1
+
+# DQN (E-… của Thuận). Máy nào đã có torch thì có thể bỏ dòng này.
+torch>=2.0
+
+# Metrics / learning curve (UC-05) và render (E-20)
+pandas>=2.0
+matplotlib>=3.8
+
+# Kiểm thử
+pytest>=8.0

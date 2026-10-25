@@ -1,0 +1,11 @@
+{
+  "name": "randomized",
+  "description": "Ngẫu nhiên: xác suất mưa là một khoảng, mọi biến thời tiết đều lấy mẫu. Dùng để đánh giá tổng quát hóa trên điều kiện chưa gặp.",
+  "rain_prob": [0.2, 0.6],
+  "temp_range": [20.0, 38.0],
+  "rain_forecast_range": [0.0, 40.0],
+  "episode_length": 30,
+  "crop_type": 2,
+  "growth_stage": 0,
+  "seed": 42
+}

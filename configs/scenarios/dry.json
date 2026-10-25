@@ -1,0 +1,11 @@
+{
+  "name": "dry",
+  "description": "Khô hạn: nắng nóng, gần như không mưa. Cây dễ stress, đo khả năng cứu cây và tiết kiệm nước.",
+  "rain_prob": 0.05,
+  "temp_range": [35.0, 42.0],
+  "rain_forecast_range": [0.0, 0.1],
+  "episode_length": 30,
+  "crop_type": 0,
+  "growth_stage": 2,
+  "seed": 42
+}

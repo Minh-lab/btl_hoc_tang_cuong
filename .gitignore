@@ -1,0 +1,23 @@
+# Môi trường ảo & cache Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Artifact sinh ra khi chạy (không commit)
+logs/
+checkpoints/
+outputs/
+data/
+*.npz
+*.pt
+*.pth
+
+# Công cụ cá nhân
+.freebuff/
+.DS_Store

@@ -1,0 +1,11 @@
+{
+  "name": "stormy",
+  "description": "Mưa bão: mưa nhiều, dự báo lớn. Đo khả năng hoãn tưới, tận dụng nước mưa và tránh ngập úng.",
+  "rain_prob": 0.65,
+  "temp_range": [22.0, 30.0],
+  "rain_forecast_range": [15.0, 30.0],
+  "episode_length": 30,
+  "crop_type": 1,
+  "growth_stage": 1,
+  "seed": 42
+}
