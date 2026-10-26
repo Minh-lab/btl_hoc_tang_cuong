@@ -27,8 +27,44 @@ pip install -e .
 .venv/bin/python -m pytest tests/test_reward.py -v
 ```
 
-Hiện trạng: **28 passed, 19 xfailed**. Các test `xfail(strict=True)` là phần **chưa
-cài đặt** (reward, vật lý, `reset`/`step`) — chúng mang sẵn kỳ vọng đúng nên khi
+## Dashboard prototype (chỉ hiển thị)
+
+Giao diện 4 trang dựng **trước** khi môi trường chạy được, để cả nhóm hình dung sản phẩm.
+Dashboard **chỉ đọc CSV**, không huấn luyện, không import `agriwater`.
+
+```bash
+.venv/bin/python -m pip install -e ".[dashboard]"      # cài streamlit (extra, không ảnh hưởng lõi)
+.venv/bin/python scripts/make_fixtures.py               # sinh CSV mẫu (dữ liệu TỔNG HỢP)
+bash scripts/run_dashboard.sh                           # mở http://localhost:8501
+```
+
+- Dữ liệu mẫu nằm ở `app/sample_data/`, do `scripts/make_fixtures.py` sinh có seed. **Không**
+  trích số liệu ở đây vào báo cáo — đây không phải kết quả thực nghiệm.
+- Khi lõi chạy được: đặt log thật vào `logs/` (đúng schema `MetricsLogger`) hoặc đặt
+  `AGRIWATER_LOGS=<thư mục>`; dashboard tự chuyển sang log thật, không sửa code UI.
+- Schema 13 cột của dashboard được canh bởi `tests/test_dashboard_schema.py`.
+
+## Docker (tùy chọn)
+
+Chỉ cần khi máy thành viên không muốn cài Python/venv, hoặc cần môi trường giống hệt để demo.
+Cách chính vẫn là `bash scripts/setup.sh`.
+
+```bash
+docker compose up --build            # dashboard: http://localhost:8501
+docker compose run --rm test         # chạy toàn bộ pytest trong container
+docker compose down                  # tắt
+```
+
+- Ảnh dùng `python:3.12-slim`; **không** cài torch mặc định. Cần DQN:
+  `docker build --build-arg INSTALL_TORCH=true -t agriwater-rl:torch .`
+- Thư mục `./logs` được mount vào container; có CSV thì dashboard đọc log thật,
+  không có thì dùng fixtures trong `app/sample_data/`.
+- Code trong image là bản copy lúc build — sửa code phải `docker compose up --build` lại.
+
+## Hiện trạng
+
+**41 passed, 19 xfailed** (28 test lõi + 13 test dashboard). Các test `xfail(strict=True)` là phần
+**chưa cài đặt** (reward, vật lý, `reset`/`step`) — chúng mang sẵn kỳ vọng đúng nên khi
 code xong, test chuyển xanh và ai quên gỡ `pytestmark` sẽ thấy `XPASS(strict)` báo lỗi.
 
 ## Cấu trúc
@@ -50,9 +86,16 @@ agriwater/
 └── utils/metrics.py       # MetricsLogger → CSV (UC-05)                          [Minh]
 
 configs/scenarios/{dry,stormy,randomized}.json    # kịch bản, KHÔNG hard-code
-tests/                                            # 47 test, chia theo task
+tests/                                            # 60 test, chia theo task
 docs/                                             # báo cáo, thiết kế, kế hoạch
+app/                                              # dashboard prototype (Streamlit, chỉ đọc CSV)
+├── streamlit_app.py                              # entry: st.navigation 4 trang
+├── data_access.py                                # CsvRunRepository (fixtures ↔ logs)
+├── components.py                                 # banner, KPI, cache
+├── views/{tong_quan,hoc_duong,so_sanh,mo_phong}.py
+└── sample_data/                                  # CSV tổng hợp — KHÔNG phải kết quả thật
 scripts/setup.sh                                  # cài đặt
+scripts/make_fixtures.py                          # sinh CSV mẫu cho dashboard
 ```
 
 Tài liệu: `docs/KeHoach_MoiTruong_Minh_Truong.md` (hợp đồng + task E-01…E-23),

@@ -18,6 +18,8 @@ dqn = ["torch>=2.0"]
 # Metrics/learning curve cho UC-05.
 viz = ["pandas>=2.0", "matplotlib>=3.8"]
 dev = ["pytest>=8.0"]
+# Dashboard prototype (app/) — không bắt buộc cho lõi env/agent.
+dashboard = ["streamlit>=1.40"]
 
 [tool.setuptools.packages.find]
 include = ["agriwater*"]

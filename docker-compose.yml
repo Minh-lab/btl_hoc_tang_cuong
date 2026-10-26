@@ -1,0 +1,31 @@
+# Docker Compose cho AgriWater-RL.
+#
+#   docker compose up --build        # dashboard: http://localhost:8501
+#   docker compose run --rm test     # chạy pytest trong container
+#
+# Không cần Docker cho phát triển hằng ngày — venv + scripts/setup.sh là cách chính.
+# Docker dùng khi: máy thành viên không muốn cài Python, hoặc cần môi trường giống hệt
+# để chụp màn hình/demo.
+
+services:
+  dashboard:
+    build:
+      context: .
+      args:
+        INSTALL_TORCH: "false"
+    image: agriwater-rl:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      # Có CSV trong ./logs thì dashboard tự đọc log thật; không có thì dùng fixtures.
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  test:
+    build:
+      context: .
+      args:
+        INSTALL_TORCH: "false"
+    image: agriwater-rl:latest
+    profiles: ["test"]
+    command: ["python", "-m", "pytest", "-q"]
