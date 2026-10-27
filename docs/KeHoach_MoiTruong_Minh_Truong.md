@@ -242,6 +242,7 @@ Ký hiệu: `[ ]` chưa xong · `[~]` đang làm · `[x]` xong · `[!]` bị ch�
 | | Ngưỡng stress liên tiếp $K$ | $K = 3$ (thử 2 và 5 nếu kết quả bất thường) | Cả 2 |
 | | `rain_forecast_mm` đơn vị | Chuẩn hóa $R_{\max}=50$ mm; ngưỡng 0.30 ≡ 15 mm | Cả 2 |
 | | Có đưa `stress_days` vào obs? | Không — giữ obs 7 chiều, đưa vào `info` | Cả 2 |
+| 27/10/2026 | `D_t` làm ngập úng bất khả thi (`m ≤ 0.85 − ET`) | **Phương án B**: `D_t = max(0, m_t − θ_fc)` — thấm thoát từ nước đọng ngày trước; ngập úng `m > 0.85` khả thi; thêm test biên | Chủ dự án |
 | | | | |
 
 ---

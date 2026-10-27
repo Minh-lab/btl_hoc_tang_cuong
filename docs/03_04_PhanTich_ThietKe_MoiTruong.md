@@ -79,7 +79,9 @@ action_space = Discrete(6)   # 0,5,10,15,20,25 lít
 
 $$m_{t+1} = \operatorname{clip}\Big( m_t \;+\; \underbrace{\eta \cdot k_a \cdot a_t}_{\Delta I\ \text{(tưới)}} \;+\; \underbrace{\rho \cdot f_t}_{\Delta R\ \text{(mưa)}} \;-\; \underbrace{ET_t}_{\text{bốc thoát hơi}} \;-\; \underbrace{D_t}_{\text{thấm thoát}},\; 0,\; 1 \Big)$$
 
-$$ET_t = c_{\text{evap}} \cdot K_c(\text{crop},\ g) \cdot \frac{T_t - 15}{30} + c_{\text{base}}, \qquad D_t = \max\big(0,\ m_t + \Delta I + \Delta R - \theta_{\text{fc}}\big)$$
+$$ET_t = c_{\text{evap}} \cdot K_c(\text{crop},\ g) \cdot \frac{T_t - 15}{30} + c_{\text{base}}, \qquad D_t = \max\big(0,\ m_t - \theta_{\text{fc}}\big)$$
+
+> **Cập nhật 27/10/2026 (đã chốt — phương án B):** thấm thoát tính từ **nước đọng của ngày trước**, `D_t = max(0, m_t − θ_fc)`. Công thức cũ `max(0, m_t + ΔI + ΔR − θ_fc)` khiến `m_{t+1} ≤ θ_fc − ET < 0.85`, nên nhánh stress ngập úng `m > 0.85` không bao giờ xảy ra. Với công thức mới, nước tưới/mưa trong ngày có thể đẩy `m` vượt 0.85 — khớp với reward và kịch bản mưa bão. Quyết định ghi ở `CONTEXT.md` §15; `contract.py` và `reward.py` không đổi.
 
 | Hằng số | Giá trị đề xuất | Ý nghĩa |
 |---|---|---|
