@@ -356,6 +356,8 @@ Các file `.docx`/`.pdf` là nhị phân — **không sửa bằng công cụ v�
 | 8 | E-23 | Bảng số liệu gate + nhật ký quyết định | Minh | — |
 
 > **Đợt đang làm:** thứ tự và phạm vi chi tiết ở `docs/KeHoach_ThietLap_MoiTruong_Minh_Truong.md` (B.0 → B.7, không timeline). Bảng dưới là roadmap tổng; kế hoạch đợt này chi tiết hóa E-03, E-05, E-07, E-10…E-12, E-20, E-21.
+>
+> **Nhận việc bằng nhánh:** mỗi ID trong `docs/ToDoList_ThietLap_MoiTruong_Minh_Truong.md` được nhận bằng nhánh `feat/<minh|truong>-<ID>` đã push (1 ID = 1 nhánh = 1 PR). Nhánh/PR đã tồn tại nghĩa là đã có người làm — **không làm lại**. Luật đầy đủ ở `SKILL.md` §0.4.
 
 Nguyên tắc: khi xong một task ⇒ gỡ `pytestmark` xfail ở file test tương ứng, chạy `pytest`, mở PR nhỏ (≤ 2 ngày, 1 nhánh = 1 task). Cổng G1 = reward đúng 5 tình huống; G2 = `step()` chạy 1 episode 30 bước; G3 = toàn bộ pytest xanh; G4 = smoke 4 chiến lược xuất CSV.
 
@@ -396,3 +398,4 @@ Dự án đã có **hợp đồng MDP, khung môi trường, rời rạc hóa, l
 | 2026-10-27 | Ban hành luật làm việc: AI phải đọc `CONTEXT.md` + `SKILL.md` trước mỗi lần triển khai, bám sát `CONTEXT.md`; mọi ý kiến bổ sung/cải thiện phải đề xuất và chờ chủ dự án xác nhận, sau đó mới ghi vào `CONTEXT.md` rồi mới triển khai | Chủ dự án (yêu cầu trực tiếp ngày 27/10/2026) | `SKILL.md` §0 (mới), §8, §11; `CONTEXT.md` §15 (mới); không đổi code, test hay hợp đồng MDP |
 | 2026-10-27 | Duyệt cập nhật tài liệu để trỏ tới kế hoạch mới: `SKILL.md` §0.1, §2, §10; `CONTEXT.md` §9, §12 | Chủ dự án (duyệt trong hội thoại 27/10/2026) | Chỉ tài liệu; không đổi code, test hay hợp đồng |
 | 2026-10-27 | Chốt lỗi đặc tả drainage — **phương án B**: `D_t = max(0, m_t − θ_fc)`, cho phép ngập úng `m > 0.85`; đã cập nhật `CONTEXT.md` §5.4, §10 (#13), §11 (#1), `docs/03_04_PhanTich_ThietKe_MoiTruong.md` §3.5, `docs/KeHoach_ThietLap_MoiTruong_Minh_Truong.md` §9 và B.3 | Chủ dự án (duyệt trong hội thoại 27/10/2026) | `physics.py` khi cài phải theo công thức mới + thêm test biên ngập úng; `contract.py` và `reward.py` không đổi; `.docx`/`.pdf` phải sửa thủ công |
+| 2026-10-27 | Áp dụng luật **“nhận việc bằng nhánh”**: kiểm nhánh/PR/Trạng thái trước khi làm; nhận việc = push nhánh `feat/<minh|truong>-<ID>`; 1 ID = 1 nhánh = 1 PR; không làm lại ID đã có nhánh/PR; chỉ commit file thuộc ID; merge rồi mới đổi Trạng thái | Chủ dự án (yêu cầu trực tiếp ngày 27/10/2026) | `SKILL.md` §0.1 (bước 5), §0.4 (mới), §10; `CONTEXT.md` §12; không đổi code, test hay hợp đồng MDP |

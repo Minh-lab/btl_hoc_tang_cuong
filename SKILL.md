@@ -23,7 +23,9 @@
 3. CHẠY BASELINE: .venv/bin/python -m pytest -q  → ghi lại số passed/xfailed.
 4. ĐỐI CHIẾU vùng cấm: task có chạm mục nào ở §8 không?
      Có  ⇒ chỉ được làm sau khi được xác nhận (xem §0.2).
-5. CHỈ SAU 1–4 mới được sửa code.
+5. NHẬN VIỆC BẰNG NHÁNH (§0.4): kiểm ID đã có nhánh/PR chưa; nếu chưa thì tạo và push
+     feat/<minh|truong>-<ID>. Nhánh đã push CHÍNH LÀ dấu hiệu "ID này đã có người nhận".
+6. CHỈ SAU 1–5 mới được sửa code.
 ```
 
 ### 0.2. Có ý kiến bổ sung/cải thiện ⇒ đề xuất, KHÔNG tự làm
@@ -66,6 +68,29 @@
 ```
 
 Gặp mâu thuẫn giữa các mục ⇒ **không tự chọn**; báo theo §0.2.
+
+### 0.4. Nhận việc bằng nhánh (chống hai agent làm trùng)
+
+Áp dụng khi có từ hai người/agent cùng làm trên repo (Minh và Trưởng). Nguồn phân công: `docs/ToDoList_ThietLap_MoiTruong_Minh_Truong.md` (ID `M-xx` / `T-xx` / `C-xx`).
+
+```text
+1. ĐỒNG BỘ: git status sạch → git pull --rebase origin main
+2. KIỂM ĐÃ CÓ AI NHẬN CHƯA (làm đủ 3 nguồn, không đoán):
+     a. git ls-remote --heads origin | grep -i "<ID>"       # ví dụ M-02, T-08
+     b. danh sách PR đang mở trên GitHub
+     c. cột Trạng thái của đúng hàng đó trong file ToDoList
+   Có bất kỳ dấu hiệu nào  ⇒  KHÔNG làm lại. Chuyển sang review hoặc chọn ID khác.
+3. NHẬN VIỆC = tạo & push nhánh:   feat/<minh|truong>-<ID>   (ví dụ feat/minh-M-02)
+     Một ID = một nhánh = một PR. Không gộp 2 ID vào 1 nhánh.
+4. CHỈ COMMIT file thuộc ID đó (cột "File được sửa"); không sửa file của người kia,
+   không sửa file dùng chung, không "tiện tay" dọn dẹp.
+5. XONG: PR nhỏ, tiêu đề [<ID>] …, nhờ đúng người review chéo, merge rồi mới đổi
+   Trạng thái → done trong file ToDoList (chỉ hàng của mình).
+```
+
+**Cấm:** sửa file ToDoList để "giữ chỗ" trước khi có nhánh; `push --force`; rebase/amend/xóa nhánh của người khác; tự nhận một ID đang có nhánh hoặc PR của người kia; gộp việc của hai ID vào một nhánh.
+
+**Bị chặn:** ghi `chờ <ID>` trong PR, chọn ID khác không phụ thuộc và khác file (xem bảng "làn chạy song song" trong file ToDoList), không chen vào file đang có PR của người kia.
 
 ---
 
@@ -305,6 +330,7 @@ Ngược lại, **cứ làm luôn** (không cần hỏi): cài các hàm `NotImp
 | Đổi cách cài/chạy | `scripts/setup.sh`, `scripts/run_dashboard.sh`, `Dockerfile` |
 | Đổi đặc tả/hợp đồng | `docs/KeHoach_MoiTruong_Minh_Truong.md` §2 và §6 (nhật ký quyết định) |
 | Đổi phạm vi/thứ tự đợt thiết lập môi trường | `docs/KeHoach_ThietLap_MoiTruong_Minh_Truong.md` (phải được chủ dự án xác nhận, ghi `CONTEXT.md` §15) |
+| Xem ai đang làm ID nào / nhận việc | `docs/ToDoList_ThietLap_MoiTruong_Minh_Truong.md` + nhánh `feat/<minh|truong>-<ID>` (§0.4) |
 
 ---
 
