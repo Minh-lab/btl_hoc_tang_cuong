@@ -1,7 +1,7 @@
 # SKILL — Luật làm việc bắt buộc trong repo AgriWater-RL (Nhóm 10)
 
 > **Đây là file AI PHẢI đọc và tuân theo trước MỌI lần triển khai.** Không đọc file này + `CONTEXT.md` thì không được sửa code.
-> **`CONTEXT.md` (cùng thư mục cha) là la bàn của dự án.** Mọi việc làm phải truy vết được về một mục trong đó; không tự đổi hướng, không tự mở rộng phạm vi.
+> **`CONTEXT.md` (cùng thư mục gốc dự án) là la bàn của dự án.** Mọi việc làm phải truy vết được về một mục trong đó; không tự đổi hướng, không tự mở rộng phạm vi.
 > **Có ý kiến bổ sung/cải thiện ⇒ đề xuất và chờ chủ dự án xác nhận; chỉ sau khi được xác nhận mới ghi vào `CONTEXT.md` rồi mới triển khai.**
 > Thư mục làm việc: `/home/minh/reinforcement-learning/N10_RF`.
 
@@ -342,5 +342,3 @@ Ngược lại, **cứ làm luôn** (không cần hỏi): cài các hàm `NotImp
 > Cài **reward trước** (test đã viết sẵn, kỳ vọng rõ), rồi **weather → physics → reset/step**.
 > Mỗi lần xong: gỡ `pytestmark`, chạy full test, kiểm bất biến §3, đừng đổi `contract.py`.
 > Mọi con số đưa vào báo cáo phải đến từ `logs/` thật, không phải `app/sample_data/`.
-
-## 12. Tham khảo tài liệu mẫu /home/minh/reinforcement-learning/N10_RF/docs/tham-khao/example.docx
